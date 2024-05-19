@@ -1,0 +1,38 @@
+Codingan Linked List:
+
+#include <iostream>
+using namespace std;
+
+// Mendefinisikan struktur node
+struct Node {
+    int data;
+    Node* next;
+};
+
+// Fungsi untuk menambahkan node baru di awal linked list
+void tambahDepan(Node*& head, int newData) {
+    // Membuat node baru
+    Node* newNode = new Node();
+    newNode->data = newData;
+    newNode->next = head;
+    // Mengatur head ke node baru
+    head = newNode;
+}
+
+// Fungsi untuk menampilkan linked list
+void tampilkan(Node* node) {
+    
+        cout << node->data << " ";
+        node = node->next;
+    }
+
+int main() {
+    // Inisialisasi linked list
+    
+    // Menambahkan beberapa node ke depan linked list
+    
+    // Menampilkan linked list
+    cout << "Linked List: ";
+   
+    return 0;
+}
