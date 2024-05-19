@@ -1,0 +1,62 @@
+Codingan Sorting Quick 
+
+#include <iostream>
+using namespace std;
+
+// Fungsi untuk menukar nilai antara dua elemen
+void tukar(int& a, int& b) {
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+// Fungsi untuk membagi array dan mengembalikan indeks pivot
+int partisi(int arr[], int low, int high) {
+    int pivot = arr[high]; // Pilih elemen pivot (di sini kami memilih elemen terakhir)
+    int i = low - 1; // Indeks dari elemen yang kurang dari pivot
+
+    for (int j = low; j < high; j++) {
+        // Jika elemen saat ini lebih kecil atau sama dengan pivot
+        if (arr[j] <= pivot) {
+            i++; // Naikkan indeks dari elemen yang kurang dari pivot
+            tukar(arr[i], arr[j]); // Tukar arr[i] dengan arr[j]
+        }
+    }
+    tukar(arr[i + 1], arr[high]); // Tukar elemen yang lebih besar dengan pivot
+    return (i + 1); // Kembalikan indeks pivot
+}
+
+// Fungsi utama untuk melakukan pengurutan Quick Sort
+void quickSort(int arr[], int low, int high) {
+    if (low < high) {
+        // pi adalah indeks partisi, arr[pi] saat ini berada di posisi yang tepat
+        int pi = partisi(arr, low, high);
+
+        // Panggil quickSort secara rekursif untuk bagian sebelum dan setelah partisi
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+// Fungsi untuk menampilkan array
+void tampilkanArray(int arr[], int size) {
+    for (int i = 0; i < size; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+int main() {
+    int arr[] = {10, 7, 8, 9, 1, 5};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    
+    cout << "Array sebelum diurutkan: ";
+    tampilkanArray(arr, n);
+
+    quickSort(arr, 0, n - 1);
+
+    cout << "Array setelah diurutkan: ";
+    tampilkanArray(arr, n);
+
+    return 0;
+}
